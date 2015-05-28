@@ -1,5 +1,9 @@
 package com.bjhit.martin.libvirt;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -27,7 +31,26 @@ public class TestLibvirt {
 		}finally{
 			ConnectUtil.close(conn);
 		}
-		
+		DataOutputStream out = new DataOutputStream(System.out);
+		DataInputStream in = new DataInputStream(System.in);
+		try {
+			out.writeInt(2);;
+			out.flush();
+			out.close();
+			int c = in.readInt();
+			System.out.println("read :"+c);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try {
+				
+				in.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

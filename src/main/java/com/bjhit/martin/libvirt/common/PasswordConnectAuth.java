@@ -19,7 +19,6 @@ public class PasswordConnectAuth extends ConnectAuth {
 
 	@Override
 	public int callback(Credential[] paramArrayOfCredential) {
-
 		for (Credential credential : paramArrayOfCredential) {
 			String param = "";
 			switch (credential.type) {

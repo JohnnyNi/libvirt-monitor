@@ -15,8 +15,7 @@ public class ConnectUtil {
 		switch (type) {
 		case KVM_SSH:
 			ConnectAuth auth = new PasswordConnectAuth("root", "bjhit2015");
-			new Connect("qemu+ssh://root@" + host + "/system", auth, 1);
-			return new Connect("qemu+ssh://root@" + host + "/system");
+			return new Connect("qemu+ssh://root@" + host + "/system", auth, 1);
 		case KVM_TCP:
 			return new Connect("qemu+tcp://" + host + "/system");
 		default:
@@ -34,7 +33,4 @@ public class ConnectUtil {
 		}
 	}
 	
-	public static void main(String[] args) throws LibvirtException {
-		getConnect("172.19.106.245", ConnectType.KVM_SSH);
-	}
 }
