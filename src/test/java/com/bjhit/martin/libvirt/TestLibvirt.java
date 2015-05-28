@@ -13,7 +13,7 @@ import com.bjhit.martin.libvirt.vm.VMStatistic;
 public class TestLibvirt {
 	public static void main(String[] args) throws LibvirtException {
 		TestLibvirt libvirt = new TestLibvirt();
-		Connect conn = ConnectUtil.getConnect("172.19.106.245",ConnectType.TCP);
+		Connect conn = ConnectUtil.getConnect("172.19.106.245",ConnectType.KVM_TCP);
 		try {
 			VMStatistic vmStatistic = new VMStatistic(conn);
 			Map<Integer, Double> vmCpusRate = vmStatistic.staticVmCpuRate("windows-xp", 2000);

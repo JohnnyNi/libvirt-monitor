@@ -1,19 +1,23 @@
 package com.bjhit.martin.libvirt.util;
 
 import org.libvirt.Connect;
+import org.libvirt.ConnectAuth;
 import org.libvirt.LibvirtException;
 
 import com.bjhit.martin.libvirt.common.ConnectType;
+import com.bjhit.martin.libvirt.common.PasswordConnectAuth;
 
 public class ConnectUtil {
 
 	public static Connect getConnect(String host, ConnectType type) throws LibvirtException {
 		//windows run must set the path
-//		System.setProperty("jna.library.path", "C:\\Program Files\\VirtViewer v2.0256\\bin");
+		System.setProperty("jna.library.path", "C:\\Program Files\\VirtViewer v2.0256\\bin");
 		switch (type) {
-		case SSH:
+		case KVM_SSH:
+			ConnectAuth auth = new PasswordConnectAuth("root", "bjhit2015");
+			new Connect("qemu+ssh://root@" + host + "/system", auth, 1);
 			return new Connect("qemu+ssh://root@" + host + "/system");
-		case TCP:
+		case KVM_TCP:
 			return new Connect("qemu+tcp://" + host + "/system");
 		default:
 			throw new RuntimeException("unsuported type :" + type.toString());
@@ -28,5 +32,9 @@ public class ConnectUtil {
 		} catch (LibvirtException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void main(String[] args) throws LibvirtException {
+		getConnect("172.19.106.245", ConnectType.KVM_SSH);
 	}
 }

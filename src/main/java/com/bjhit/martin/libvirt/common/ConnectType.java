@@ -1,5 +1,5 @@
 package com.bjhit.martin.libvirt.common;
 
 public enum ConnectType {
-	SSH,TCP
+	XEN_SSH,KVM_SSH,XEN_TCP,KVM_TCP
 }
